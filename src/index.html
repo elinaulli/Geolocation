@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="vieport" content="width=device-width, initial-scale=1.0">
-        <title>Валидатор банковских карт</title>
-    </head>
-    <body >
-        <div class="container">
-            <h1>Валидатор банковских карт</h1>
-            <div class = "container-card">
-
-            </div> 
-            <div class="result" id="result"></div>
-            <form id="cardForm">
-                <label for="cardNumber">Номер карты:</label>
-                <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456">
-                <button type="submit" id="validateBtn">Проверить карту</button>
-            </form>
-        </div>   
-    </body> 
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лента постов с геолокацией</title>
+</head>
+<body>
+    <div class="app-container">
+        <section class="feed-container">
+        </section>
+        <section class="create-post">
+            <div class="post-input">
+                <textarea 
+                    id="postText" 
+                    placeholder="Что у вас нового?..."
+                    rows="3"
+                ></textarea>  
+                <div class="post-actions">
+                <button id="submitPost" class="btn btn-post" type="button">Создать пост</button>
+                </div>
+            </div>
+        </section>           
+    </div>
+</body>
 </html>

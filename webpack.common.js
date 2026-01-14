@@ -52,13 +52,5 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, "src", "license.txt"),
-          to: "license.txt", // имя в выходной директории
-        },
-      ],
-    }),
   ],
 };
