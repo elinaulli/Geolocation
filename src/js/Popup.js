@@ -4,9 +4,9 @@ export default class Popup {
   constructor() {
     this.popup = null;
     this.overlay = null;
-    this.resolve = null; // Функция resolve для Promise
-    this.reject = null; // Функция reject для Promise
-    this.createPopup(); // Создаем попап при инициализации
+    this.resolve = null; 
+    this.reject = null; 
+    this.createPopup(); 
   }
   createPopup() {
     if (document.getElementById("popupOverlay")) {
