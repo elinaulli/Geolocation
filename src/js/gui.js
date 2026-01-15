@@ -99,48 +99,47 @@ export default class GeoFeedApp {
   }
 
   async handleSubmit() {
-    console.log("=== handleSubmit начался ===");
 
-    // Защита от двойного клика
-    if (this.isSubmitting) {
-      console.log("Уже отправляется, игнорируем...");
-      return;
-    }
+  if (this.isSubmitting) {
+    return;
+  }
 
-    this.isSubmitting = true;
+  this.isSubmitting = true;
 
-    const textarea = document.getElementById("postText");
-    const submitBtn = document.getElementById("submitPost");
-    const text = textarea.value.trim();
+  const textarea = document.getElementById("postText");
+  const submitBtn = document.getElementById("submitPost");
+  const text = textarea.value.trim();
 
+  try {
     if (!text) {
       alert("Введите текст поста");
       textarea.focus();
-      this.isSubmitting = false;
       return;
     }
+
+    let coordinates;
     try {
-      let coordinates;
-      try {
-        coordinates = await this.getGeolocationForPost();
-      } catch (coordsError) {
-        alert("Для создания поста необходимы координаты");
-        this.isSubmitting = false;
-        return;
-      }
+      coordinates = await this.getGeolocationForPost();
+    } catch (coordsError) {
+      console.log("Ошибка получения координат:", coordsError.message);
+      alert("Для создания поста необходимы координаты");
+      return;
+    }
 
-      this.addPost(text, coordinates);
-      textarea.value = "";
+    this.addPost(text, coordinates);
+    textarea.value = "";
 
-      const firstPost = document.querySelector(".post");
-      if (firstPost) {
-        firstPost.scrollIntoView({ behavior: "smooth" });
-      }
-    } catch (error) {
-      console.error("Ошибка при создании поста:", error);
-      alert("Произошла ошибка при создании поста: " + error.message);
-    } 
+    const firstPost = document.querySelector(".post");
+    if (firstPost) {
+      firstPost.scrollIntoView({ behavior: "smooth" });
+    }
+  } catch (error) {
+    console.error("Ошибка при создании поста:", error);
+    alert("Произошла ошибка при создании поста: " + error.message);
+  } finally {
+    this.isSubmitting = false;
   }
+}
 
   addPost(text, coordinates) {
     const post = {
